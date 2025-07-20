@@ -8,23 +8,23 @@ def createEntities(rocks, papers, scissors, entitiesVelocity):
     for i in range(rocks):
         direction1 = random.randint(0,1)
         direction2 = random.randint(0,1)
-        entitiesVel = (entitiesVelocity if direction1 == 0 else entitiesVelocity * -1, 
-                       entitiesVelocity if direction2 == 0 else entitiesVelocity * -1)
-        entity = Entity.Entity("./assets/rock.png", "rock", (random.randint(0,100), random.randint(0,100)), entitiesVel)
+        entitiesVel = (random.randint(0,50) if direction1 == 0 else random.randint(0,50) * -1, 
+                       random.randint(0,50) if direction2 == 0 else random.randint(0,50) * -1)
+        entity = Entity.Entity("./assets/rock.png", "rock", (random.randint(50,100), random.randint(50,100)), entitiesVel)
         entities.append(entity)
     for i in range(papers):
         direction1 = random.randint(0,1)
         direction2 = random.randint(0,1)
-        entitiesVel = (entitiesVelocity if direction1 == 0 else entitiesVelocity * -1, 
-                       entitiesVelocity if direction2 == 0 else entitiesVelocity * -1)
+        entitiesVel = (random.randint(0,50) if direction1 == 0 else random.randint(0,50) * -1, 
+                       random.randint(0,50) if direction2 == 0 else random.randint(0,50) * -1)
         entity = Entity.Entity("./assets/paper.png", "paper", (random.randint(300,500), random.randint(300,500)), entitiesVel)
         entities.append(entity)
     for i in range(scissors):
         direction1 = random.randint(0,1)
         direction2 = random.randint(0,1)
-        entitiesVel = (entitiesVelocity if direction1 == 0 else entitiesVelocity * -1, 
-                       entitiesVelocity if direction2 == 0 else entitiesVelocity * -1)
-        entity = Entity.Entity("./assets/scissors.png", "scissors", (random.randint(500,700), random.randint(500,700)), entitiesVel)
+        entitiesVel = (random.randint(0,50) if direction1 == 0 else random.randint(0,50) * -1, 
+                       random.randint(0,50) if direction2 == 0 else random.randint(0,50) * -1)
+        entity = Entity.Entity("./assets/scissors.png", "scissors", (random.randint(500,650), random.randint(500,650)), entitiesVel)
         entities.append(entity)
     return entities
 
@@ -42,7 +42,6 @@ while running:
             running = False
     screen.fill((0, 0, 0))
     for entity in entities:
-        entity.Update(dt)
-        entity.Draw(screen)
+        entity.Update(dt, screen)
     pygame.display.flip()
 pygame.quit()

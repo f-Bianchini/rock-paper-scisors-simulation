@@ -9,9 +9,17 @@ class Entity(pygame.sprite.Sprite):
         self.velocity = pygame.math.Vector2(velocity)
         self.pos = pygame.math.Vector2(position)
 
-    def Update(self, dt):
+    def Update(self, dt, screen):
         self.pos += self.velocity * dt
         self.rect.topleft = self.pos
+        self.CheckBorderCollision(screen.get_height(), screen.get_width())
+        self.Draw(screen)
 
     def Draw(self, screen):
         screen.blit(self.image, self.rect)
+
+    def CheckBorderCollision(self, screenHeight, screenWidth):
+        if self.pos.x <= 0 or self.pos.x + self.rect.width >= screenWidth:
+            self.velocity.x *= -1
+        if self.pos.y <= 0 or self.pos.y + self.rect.height >= screenHeight:
+            self.velocity.y *= -1
