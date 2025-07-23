@@ -25,9 +25,11 @@ class Entity(pygame.sprite.Sprite):
             self.velocity.y *= -1
     
     def CheckEntityCollision(self, other):
-        if self.pos.distance_to(other.pos) <= 10:
+        if self.pos.distance_to(other.pos) <= 16:
             return True
+        return False
 
     def UpdateType(self, newType, newImage):
         self.image = newImage
         self.type = newType
+        print(self.type)
